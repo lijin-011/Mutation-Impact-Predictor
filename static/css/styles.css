@@ -1,0 +1,154 @@
+:root{
+  --bg1:#0b1020; --bg2:#101a33; --glass:rgba(255,255,255,.06);
+  --fg:#e8eefc; --mutFrom:#ff6b6b; --mutTo:#41d88c; --accent:#60a5fa;
+  --card:#111a2e; --border:rgba(255,255,255,.12); --chip:#1c2a4b;
+}
+
+h2,h1{
+    text-align: center;
+}
+
+.header-text{
+    text-align: center;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{
+  color:var(--fg);
+  font-family:ui-sans-serif,system-ui,Segoe UI,Roboto,Helvetica,Arial;
+  background: linear-gradient(120deg,var(--bg1),var(--bg2));
+  overflow-x:hidden;
+}
+
+#bg-canvas{
+  position:fixed; inset:0; z-index:-2;
+}
+
+.grid-overlay{
+  position:fixed; inset:0; z-index:-1;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(96,165,250,.15), transparent 40%),
+    url("../img/protein-helix.svg");
+  background-size: 80vmax, 480px;
+  background-repeat: no-repeat, repeat;
+  background-position: -10vmax -10vmax, center;
+  mix-blend-mode: screen;
+  opacity:.35;
+  animation: floatHelix 24s linear infinite alternate;
+}
+@keyframes floatHelix{
+  from{background-position: -12vmax -12vmax, center}
+  to  {background-position: -6vmax -6vmax, center}
+}
+
+.app-header{
+  padding:24px 24px 8px ;
+}
+.brand{display:flex;flex-direction:column;align-items:center;gap:2px;font-weight:700}
+.brand-logo{width:34px;height:34px;filter:drop-shadow(0 2px 6px rgba(0,0,0,.4))}
+.brand-text{font-size:1.75rem;letter-spacing:.3px}
+.tagline{text-align:center;opacity:.8;margin-top:6px}
+
+.container{
+  max-width:1100px;margin:0 auto;padding:20px;display:flex;flex-direction:column;gap:18px;
+}
+
+.row{display:flex;gap:16px;flex-wrap:wrap}
+.col{flex:1 1 320px}
+.col.full{flex:1 1 100%}
+
+.card{
+  background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+  border:1px solid var(--border);
+  border-radius:20px; padding:18px 18px 20px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 24px rgba(0,0,0,.25);
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.card:hover{transform:translateY(-2px); box-shadow:0 10px 28px rgba(0,0,0,.28); border-color:rgba(255,255,255,.2)}
+.lift-on-hover:hover{transform:translateY(-4px) scale(1.01)}
+
+h2,h3{margin:0 0 12px}
+label{display:block;font-size:.9rem;margin:6px 0 8px;opacity:.9}
+input[type="text"], input[type="number"], select{
+  width:100%; padding:12px 14px; border-radius:12px; border:1px solid var(--border);
+  background: rgba(255,255,255,.04); color:var(--fg); outline:none;
+  transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+input:hover,select:hover{border-color:rgba(255,255,255,.25)}
+input:focus,select:focus{border-color:var(--accent); box-shadow:0 0 0 4px rgba(96,165,250,.15)}
+.help{font-size:.8rem;opacity:.7;margin-left:8px}
+
+.mutation-preview{
+  margin:14px 0 12px; padding:12px; text-align:center;
+  background: rgba(96,165,250,.08);
+  border:1px dashed rgba(96,165,250,.35);
+  border-radius:12px; font-size:1.05rem;
+}
+.mutation-preview .from-aa{color:var(--mutFrom)}
+.mutation-preview .to-aa{color:var(--mutTo)}
+.pulse{animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(96,165,250,.25)}70%{box-shadow:0 0 0 14px rgba(96,165,250,0)}100%{box-shadow:0 0 0 0 rgba(96,165,250,0)}}
+
+.btn-primary{
+  margin-top:10px; display:inline-flex; align-items:center; gap:10px;
+  padding:12px 16px; font-weight:600; border-radius:12px; border:1px solid rgba(255,255,255,.15);
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+  color:white; cursor:pointer; position:relative; overflow:hidden;
+  transition: transform .15s ease, box-shadow .2s ease, filter .2s ease;
+}
+.btn-primary:hover{transform:translateY(-1px); box-shadow:0 8px 16px rgba(59,130,246,.35); filter:saturate(1.1)}
+.btn-primary:active{transform:translateY(1px)}
+.btn-spinner{
+  width:16px;height:16px;border-radius:50%;
+  border:2px solid rgba(255,255,255,.6); border-top-color:transparent;
+  display:none; animation:spin .8s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.btn-primary.loading .btn-spinner{display:inline-block}
+.btn-primary.loading .btn-text{opacity:.7}
+
+.result-card .impact-badge{
+  display:inline-block; padding:10px 12px; border-radius:999px; font-weight:700;
+  background:rgba(65,216,140,.12); border:1px solid rgba(65,216,140,.35);
+  box-shadow: inset 0 0 24px rgba(65,216,140,.15);
+  margin-bottom:12px;
+}
+details summary{cursor:pointer; opacity:.9; transition:opacity .2s ease}
+details[open] summary{opacity:1}
+
+.markdown p{margin:.4rem 0}
+.markdown code{background:rgba(255,255,255,.08); padding:.2em .35em; border-radius:6px}
+.markdown pre{background:rgba(0,0,0,.25); padding:10px; border-radius:10px; overflow:auto}
+
+.examples{display:flex;gap:10px;flex-wrap:wrap}
+.chip{
+  background:var(--chip); border:1px solid var(--border); border-radius:999px;
+  color:var(--fg); padding:8px 12px; cursor:pointer; transition:transform .15s ease, background .2s ease, border-color .2s;
+}
+.chip:hover{transform:translateY(-2px); background:#24355f; border-color:rgba(255,255,255,.22)}
+
+.fade-in{animation:fadeIn .6s ease both}
+.fade-in.delay-1{animation-delay:.2s}
+@keyframes fadeIn{from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:translateY(0)}}
+
+.app-footer{
+  text-align:center; padding:22px; opacity:.7
+}
+
+
+select {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--fg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 14px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+select option {
+  background-color: var(--card);
+  color: var(--fg);
+}

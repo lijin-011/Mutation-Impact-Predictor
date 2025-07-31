@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="card fade-in">
+  <h2>🧬 Kinase & Substrate Information</h2>
+  <div class="row">
+    <div class="col">
+      <label for="kinase">Select Kinase</label>
+      <select id="kinase">
+        {% for k in kinases %}
+          <option value="{{ k }}" {% if k == defaults.kinase %}selected{% endif %}>{{ k }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col">
+      <label for="gene">Select Substrate Gene</label>
+      <select id="gene">
+        {% for g in genes %}
+          <option value="{{ g }}" {% if g == defaults.gene %}selected{% endif %}>{{ g }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col full">
+      <label for="substrate">11-letter Substrate Sequence
+        <span class="help">Center (6th) should be S, T, or Y</span>
+      </label>
+      <input id="substrate" type="text" maxlength="11" value="{{ defaults.substrate }}" />
+    </div>
+  </div>
+</section>
+
+<section class="row">
+  <div class="col">
+    <div class="card lift-on-hover">
+      <h2>🔁 Mutation Details</h2>
+      <div class="row">
+        <div class="col">
+          <label for="position">Mutation Position (1–11)</label>
+          <input id="position" type="number" min="1" max="11" value="{{ defaults.position }}" />
+        </div>
+        <div class="col">
+          <label for="new_aa">New Amino Acid</label>
+          <select id="new_aa">
+            {% for aa in ['A','R','N','D','C','Q','E','G','H','I','L','K','M','F','P','S','T','W','Y','V'] %}
+              <option value="{{ aa }}" {% if aa == defaults.new_aa %}selected{% endif %}>{{ aa }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+
+      <div id="preview" class="mutation-preview pulse">
+        Mutation: <strong class="from-aa">?</strong> → <strong class="to-aa">{{ defaults.new_aa }}</strong>
+      </div>
+
+      <button id="predictBtn" class="btn-primary">
+        <span class="btn-text">Predict Impact</span>
+        <span class="btn-spinner" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card result-card">
+      <h2>📈 Prediction Results</h2>
+      <div class="impact-badge" id="overallImpact">—</div>
+      <details id="detailsAcc">
+        <summary>Show Detailed Analysis</summary>
+        <div id="detailsHtml" class="markdown"></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="card fade-in delay-1">
+  <h3>Examples</h3>
+  <div class="examples">
+    <button class="chip" data-k="BRAF" data-g="BRAF" data-s="SGSFGTVYKGK" data-p="2" data-aa="V">BRAF / BRAF / SGSFGTVYKGK / 2→V</button>
+    <button class="chip" data-k="AKT1" data-g="GSK3B" data-s="GGRARTSSFAE" data-p="8" data-aa="A">AKT1 / GSK3B / GGRARTSSFAE / 8→A</button>
+    <button class="chip" data-k="AAK1" data-g="ACTB" data-s="VVDNGSGMCKA" data-p="4" data-aa="D">AAK1 / ACTB / VVDNGSGMCKA / 4→D</button>
+  </div>
+</section>
+
+{% endblock %}
