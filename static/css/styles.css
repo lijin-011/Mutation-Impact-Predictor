@@ -8,9 +8,6 @@ h2,h1{
     text-align: center;
 }
 
-.header-text{
-    text-align: center;
-}
 
 *{box-sizing:border-box}
 html,body{height:100%;margin:0}
@@ -42,9 +39,30 @@ body{
   to  {background-position: -6vmax -6vmax, center}
 }
 
-.app-header{
-  padding:24px 24px 8px ;
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  background: transparent;
+  padding: 16px 0 12px;
 }
+
+.app-header .header-content {
+  width: 100%;
+  max-width: 1100px;
+  background: linear-gradient(to right, rgba(11, 16, 32, 0.4), rgba(11, 16, 32, 0.3));
+  backdrop-filter: blur(5px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 12px 20px 10px;  /* ⬅️ tightened inner padding */
+  transition: background 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+
+
 .brand{display:flex;flex-direction:column;align-items:center;gap:2px;font-weight:700}
 .brand-logo{width:34px;height:34px;filter:drop-shadow(0 2px 6px rgba(0,0,0,.4))}
 .brand-text{font-size:1.75rem;letter-spacing:.3px}
