@@ -330,17 +330,17 @@ class KinaseMutationPredictor:
             overall_impact = "Potential Enhancement"
 
         disease_association = self._check_disease_association(gene_name, motif, original_aa, position + 1, new_aa)
-        detailed_analysis += f"\n\n**Mutation Analysis for {kinase_name}:**\n"
+        detailed_analysis += f"\n\n**Mutation Analysis for {kinase_name}:**\n\n"
         detailed_analysis += f"* **Position {position+1}:** {original_aa} → {new_aa}\n"
         detailed_analysis += f"* **Motif:** `{motif}`\n\n"
-        detailed_analysis += f"**Individual Impact Assessments:**\n"
+        detailed_analysis += f"**Individual Impact Assessments:**\n\n"
         detailed_analysis += f"* **Charge:** {charge_txt}\n"
         detailed_analysis += f"* **Size:** {size_txt}\n"
         detailed_analysis += f"* **Hydrophobicity:** {hydrophobicity_txt}\n"
         detailed_analysis += f"* **Polarity:** {polarity_txt}\n"
         detailed_analysis += f"* **Probability:** {probability_txt}\n"
         detailed_analysis += f"* **Aromatic:** {aromatic_txt}\n\n"
-        detailed_analysis += f"**Total Impact Score:** `{normalized_total_impact:.1f}%`\n"
+        detailed_analysis += f"**Total Impact Score:** `{normalized_total_impact:.1f}%`\n\n"
         detailed_analysis += f"**Overall Assessment:** `{overall_impact}`\n\n"
         detailed_analysis += f"**Disease Association:**\n{disease_association}"
         return overall_impact, detailed_analysis

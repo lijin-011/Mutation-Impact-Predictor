@@ -19,7 +19,7 @@ resize();
 
 let hue = 210;
 function tick(){
-  hue = (hue + 0.02) % 360;
+  hue = (hue + 0.2) % 360;
   ctx.clearRect(0,0,w,h);
   ctx.fillStyle = `hsla(${hue}, 70%, 60%, 0.06)`;
   ctx.fillRect(0,0,w,h);
@@ -30,7 +30,7 @@ function tick(){
       const a = particles[i], b = particles[j];
       const dx = a.x-b.x, dy = a.y-b.y, d2 = dx*dx+dy*dy;
       if (d2 < 140*140){
-        const alpha = 0.35 * (1 - d2/(140*140));
+        const alpha = 0.5 * (1 - d2/(140*140));
         ctx.strokeStyle = `rgba(96,165,250,${alpha})`;
         ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
       }
