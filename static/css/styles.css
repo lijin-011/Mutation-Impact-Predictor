@@ -1,7 +1,7 @@
 :root{
-  --bg1:#0b1020; --bg2:#101a33; --glass:rgba(255,255,255,.06);
-  --fg:#e8eefc; --mutFrom:#ff6b6b; --mutTo:#41d88c; --accent:#60a5fa;
-  --card:#111a2e; --border:rgba(255,255,255,.12); --chip:#1c2a4b;
+  --bg1:  #233a35; --bg2:#101a33; --glass:rgba(255,255,255,.06);
+  --fg:#e8eefc; --mutFrom:#ff6b6b; --mutTo:#41d88c; --accent:#7a60fa;
+  --card:#111a2e; --border:rgba(255,255,255,.12); --chip:#5972b7;
 }
 
 h2,h1{
