@@ -2,12 +2,10 @@ services:
   - type: web
     name: kinase-predictor
     env: python
+    pythonVersion: 3.11.9
     plan: free
     region: oregon
-    buildCommand: pip install -r requirements.txt
+    buildCommand: pip install --upgrade pip setuptools wheel && pip install -r requirements.txt
     startCommand: gunicorn app:app --workers 2 --threads 4 --timeout 120 --bind 0.0.0.0:$PORT
     autoDeploy: true
-    envVars:
-      - key: PYTHON_VERSION
-        value: 3.11.9
     healthCheckPath: /
