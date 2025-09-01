@@ -6,6 +6,7 @@
   <div class="row">
     <div class="col">
       <label for="kinase">Select Kinase</label>
+      <input type="text" class="search-input" id="kinase-search" placeholder="Search kinases..." style="margin-bottom: 8px;">
       <select id="kinase">
         {% for k in kinases %}
           <option value="{{ k }}" {% if k == defaults.kinase %}selected{% endif %}>{{ k }}</option>
@@ -14,6 +15,7 @@
     </div>
     <div class="col">
       <label for="gene">Select Substrate Gene</label>
+      <input type="text" class="search-input" id="gene-search" placeholder="Search genes..." style="margin-bottom: 8px;">
       <select id="gene">
         {% for g in genes %}
           <option value="{{ g }}" {% if g == defaults.gene %}selected{% endif %}>{{ g }}</option>
